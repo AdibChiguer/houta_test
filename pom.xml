@@ -20,6 +20,22 @@
       <artifactId>selenium-java</artifactId>
       <version>4.19.1</version> <!-- Vérifiez la version stable la plus récente -->
     </dependency>
+
+        <!--        Selenuim webDriver Maneger dependency-->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>6.1.0</version>
+        </dependency>
+
+        <!--        JUnit dependecy-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+           
     <!-- TestNG for test structuring and assertions -->
     <dependency>
       <groupId>org.testng</groupId>
