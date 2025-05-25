@@ -19,9 +19,6 @@ public class TestRecherche extends ChromeTestBase {
     @Severity(SeverityLevel.CRITICAL)
     @Story("L'utilisateur recherche un produit par mot-cle")
     public void testRechercheBatterie() {
-        driver.get("https://haoutastore.com");
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         // Locate search input and enter keyword
         WebElement searchInput = wait.until(ExpectedConditions.visibilityOfElementLocated(
