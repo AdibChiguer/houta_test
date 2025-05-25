@@ -10,7 +10,7 @@
             <class name="com.test.houta.CartRemovalTest"/>
         </classes>
     </test>
-    <test name="BrowserCompatibilitySuite">
+    <test name="BrowserCompatibilitySuiteChrome">
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.test.houta.BrowserCompatibilityTest"/>
@@ -28,10 +28,5 @@
             <class name="com.test.houta.BrowserCompatibilityTest"/>
         </classes>
     </test>
-    <!-- <test name="BrowserCompatibilitySuiteSafari">
-        <parameter name="browser" value="safari"/>
-        <classes>
-            <class name="com.test.houta.BrowserCompatibilityTest"/>
-        </classes>
-    </test> -->
+   
 </suite>

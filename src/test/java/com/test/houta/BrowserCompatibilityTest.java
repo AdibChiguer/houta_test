@@ -6,7 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-// import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -14,9 +15,12 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+import java.time.Duration;
+
 public class BrowserCompatibilityTest {
     private WebDriver driver;
     private String baseUrl = "https://haoutastore.com/";
+    private WebDriverWait wait;
 
     @BeforeMethod
     @Parameters("browser")
@@ -34,12 +38,10 @@ public class BrowserCompatibilityTest {
                 WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver();
                 break;
-            // case "safari":
-            //     driver = new SafariDriver();
-            //     break;
             default:
                 throw new IllegalArgumentException("Navigateur non supporté : " + browser);
         }
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();
         driver.get(baseUrl);
     }
@@ -49,7 +51,8 @@ public class BrowserCompatibilityTest {
         String pageTitle = driver.getTitle();
         Assert.assertFalse(pageTitle.isEmpty(), "Le titre de la page d'accueil est vide sur " + driver.getClass().getSimpleName());
 
-        WebElement logo = driver.findElement(By.className("normal-logo"));
+        WebElement logo = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.cssSelector("img.normal-logo")));
         Assert.assertTrue(logo.isDisplayed(), "Le logo de la page d'accueil n'est pas affiché sur " + driver.getClass().getSimpleName());
     }
 
