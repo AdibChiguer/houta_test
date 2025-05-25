@@ -1,0 +1,32 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="HoutaStoreTestSuite">
+    <test name="NavigationTest">
+        <classes>
+            <class name="com.test.houta.NavigationTest"/>
+        </classes>
+    </test>
+    <test name="CartRemovalTest">
+        <classes>
+            <class name="com.test.houta.CartRemovalTest"/>
+        </classes>
+    </test>
+    <test name="BrowserCompatibilitySuiteChrome">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.test.houta.BrowserCompatibilityTest"/>
+        </classes>
+    </test>
+    <test name="BrowserCompatibilitySuiteFirefox">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="com.test.houta.BrowserCompatibilityTest"/>
+        </classes>
+    </test>
+    <test name="BrowserCompatibilitySuiteEdge">
+        <parameter name="browser" value="edge"/>
+        <classes>
+            <class name="com.test.houta.BrowserCompatibilityTest"/>
+        </classes>
+    </test>
+   
+</suite>
