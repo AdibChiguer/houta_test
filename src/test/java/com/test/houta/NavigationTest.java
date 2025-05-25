@@ -10,35 +10,39 @@ import org.testng.annotations.Test;
 
 public class NavigationTest extends ChromeTestBase {
 
-    @Test(groups = {"navigation"})
-    public void testCategoryNavigation() {
-        // Survoler le menu "Smartphone" pour rendre les sous-catégories visibles
-        WebElement smartphoneMenu = wait.until(ExpectedConditions.elementToBeClickable(
-                By.cssSelector("li#menu-item-7445 a[href='https://haoutastore.com/product-category/smartphone/']")));
-        new Actions(driver).moveToElement(smartphoneMenu).perform();
+        @Test(groups = { "navigation", "menu-functionality",
+                        "user-experience" }, description = "Test de navigation par survol du menu principal vers la sous-catégorie Xiaomi avec validation de l'URL et du titre")
+        public void testCategoryNavigation() {
+                // Survoler le menu "Smartphone" pour rendre les sous-catégories visibles
+                WebElement smartphoneMenu = wait.until(ExpectedConditions.elementToBeClickable(
+                                By.cssSelector("li#menu-item-7445 a[href='https://haoutastore.com/product-category/smartphone/']")));
+                new Actions(driver).moveToElement(smartphoneMenu).perform();
 
-        // Attendre que le sous-menu soit visible (optionnel, dépend du comportement du site)
-        WebElement xiaomiLink = wait.until(ExpectedConditions.elementToBeClickable(
-                By.cssSelector("li#menu-item-7790 a[href='https://haoutastore.com/product-category/xiaomi/']")));
-        
-        // Cliquer sur la catégorie Xiaomi
-        xiaomiLink.click();
+                // Attendre que le sous-menu soit visible (optionnel, dépend du comportement du
+                // site)
+                WebElement xiaomiLink = wait.until(ExpectedConditions.elementToBeClickable(
+                                By.cssSelector("li#menu-item-7790 a[href='https://haoutastore.com/product-category/xiaomi/']")));
 
-        // Vérifier l'URL
-        String currentUrl = driver.getCurrentUrl();
-        Assert.assertTrue(currentUrl.contains("xiaomi"), "La redirection vers la catégorie Xiaomi a échoué");
+                // Cliquer sur la catégorie Xiaomi
+                xiaomiLink.click();
 
-        // Vérifier le titre de la catégorie
-        WebElement categoryTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.cssSelector("h1.entry-title")));
-        Assert.assertTrue(categoryTitle.isDisplayed(), "La page de catégorie Xiaomi ne s'affiche pas correctement");
-        Assert.assertTrue(categoryTitle.getText().contains("Xiaomi"), "Le titre de la catégorie Xiaomi est incorrect");
-    }
+                // Vérifier l'URL
+                String currentUrl = driver.getCurrentUrl();
+                Assert.assertTrue(currentUrl.contains("xiaomi"), "La redirection vers la catégorie Xiaomi a échoué");
 
-    @AfterClass
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
+                // Vérifier le titre de la catégorie
+                WebElement categoryTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                                By.cssSelector("h1.entry-title")));
+                Assert.assertTrue(categoryTitle.isDisplayed(),
+                                "La page de catégorie Xiaomi ne s'affiche pas correctement");
+                Assert.assertTrue(categoryTitle.getText().contains("Xiaomi"),
+                                "Le titre de la catégorie Xiaomi est incorrect");
         }
-    }
+
+        @AfterClass
+        public void tearDown() {
+                if (driver != null) {
+                        driver.quit();
+                }
+        }
 }

@@ -46,14 +46,17 @@ public class BrowserCompatibilityTest {
         driver.get(baseUrl);
     }
 
-    @Test(groups = {"compatibility"})
+    @Test(groups = { "homepage", "cross-browser",
+            "smoke" }, description = "Vérification du chargement de la page d'accueil sur différents navigateurs")
     public void testHomePageLoad() {
         String pageTitle = driver.getTitle();
-        Assert.assertFalse(pageTitle.isEmpty(), "Le titre de la page d'accueil est vide sur " + driver.getClass().getSimpleName());
+        Assert.assertFalse(pageTitle.isEmpty(),
+                "Le titre de la page d'accueil est vide sur " + driver.getClass().getSimpleName());
 
         WebElement logo = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.cssSelector("img.normal-logo")));
-        Assert.assertTrue(logo.isDisplayed(), "Le logo de la page d'accueil n'est pas affiché sur " + driver.getClass().getSimpleName());
+        Assert.assertTrue(logo.isDisplayed(),
+                "Le logo de la page d'accueil n'est pas affiché sur " + driver.getClass().getSimpleName());
     }
 
     @AfterMethod
