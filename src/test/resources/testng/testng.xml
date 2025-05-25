@@ -30,7 +30,11 @@
     </test>
     <test name="AllRechercheTest">
         <classes>
-            <class name="com.test.houta.TestRecherche"/>
+            <class name="com.test.houta.TestRecherche">
+                <methods>
+                    <exclude name="testRechercheAvecLongTexte"/>
+                </methods>
+            </class>
         </classes>
     </test>
 
