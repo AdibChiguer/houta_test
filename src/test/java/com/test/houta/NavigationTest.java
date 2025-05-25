@@ -29,7 +29,7 @@ public class NavigationTest {
         driver.get(baseUrl);
     }
 
-    @Test
+    @Test(groups = {"navigation"})
     public void testCategoryNavigation() {
         // Survoler le menu "Smartphone" pour rendre les sous-catégories visibles
         WebElement smartphoneMenu = wait.until(ExpectedConditions.elementToBeClickable(

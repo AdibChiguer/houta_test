@@ -29,7 +29,7 @@ public class CartRemovalTest {
         driver.get(baseUrl);
     }
 
-    @Test
+    @Test(groups = {"searchBatterie", "cart"})
     public void testRemoveFromCart() {
         // Naviguer vers la page produit "Batterie Rechargeable USB Prumyls"
         driver.get(baseUrl + "product/batterie-rechargeable-usb-prumyls-1-5v-5100mwh-2-piece/");

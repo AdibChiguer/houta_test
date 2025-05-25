@@ -46,7 +46,7 @@ public class BrowserCompatibilityTest {
         driver.get(baseUrl);
     }
 
-    @Test
+    @Test(groups = {"compatibility"})
     public void testHomePageLoad() {
         String pageTitle = driver.getTitle();
         Assert.assertFalse(pageTitle.isEmpty(), "Le titre de la page d'accueil est vide sur " + driver.getClass().getSimpleName());
