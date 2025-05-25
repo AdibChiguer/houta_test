@@ -94,4 +94,52 @@ public class TestRecherche extends ChromeTestBase {
         WebElement noResultsMessage = driver.findElement(By.className("search-no-results-wrapper")); // adjust as needed
         Assert.assertTrue(noResultsMessage.isDisplayed(), "Le message 'aucun résultat' n'est pas affiché.");
     }
+
+
+    // Recherche avec une chaîne très longue
+    @Test(groups = {"SearchEdgeCase", "search"}, description = "Verifie la recherche avec une chaîne de caractères très longue")
+    @Severity(SeverityLevel.MINOR)
+    @Story("L'utilisateur saisit une chaine longue dans la barre de recherche")
+    public void testRechercheAvecLongTexte() {
+        driver.get("https://haoutastore.com");
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement searchInput = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//*[@id='undefined-sticky-wrapper']/div/div[1]/div/div[2]/div/form/div/div/input[1]")));
+
+        String longText = "x".repeat(300); // Génère une chaîne de 300 'x'
+        searchInput.sendKeys(longText);
+        searchInput.sendKeys(Keys.ENTER);
+
+        // Attendre que la section de résultats (ou non-résultats) apparaisse
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("search-no-results-wrapper")));
+
+        List<WebElement> produits = driver.findElements(By.className("product"));
+        Assert.assertTrue(produits.isEmpty(), "Des produits ont ete trouves pour une chaine longue invalide.");
+
+        WebElement noResultsMessage = driver.findElement(By.className("search-no-results-wrapper"));
+        Assert.assertTrue(noResultsMessage.isDisplayed(), "Le message 'aucun resultat' n'est pas affiche.");
+    }
+
+
+//    Recherche insensible à la casse
+    @Test(groups = {"SearchCaseInsensitive", "search"}, description = "Verifie la recherche insensible a la casse")
+    @Severity(SeverityLevel.NORMAL)
+    @Story("L'utilisateur recherche un produit avec une casse differente")
+    public void testRechercheInsensitiveCasse() {
+        driver.get("https://haoutastore.com");
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement searchInput = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//*[@id='undefined-sticky-wrapper']/div/div[1]/div/div[2]/div/form/div/div/input[1]")));
+
+        searchInput.sendKeys("BaTTeRy"); // casse aléatoire
+        searchInput.sendKeys(Keys.ENTER);
+
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("products")));
+
+        List<WebElement> produits = driver.findElements(By.className("product"));
+        Assert.assertTrue(produits.size() > 0, "Aucun produit trouve pour 'BaTTeRy'");
+    }
+
 }

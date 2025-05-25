@@ -28,5 +28,9 @@
             <class name="com.test.houta.BrowserCompatibilityTest"/>
         </classes>
     </test>
-   
+    <test name="AllRechercheTest">
+        <classes>
+            <class name="com.test.houta.TestRecherche"/>
+        </classes>
+    </test>
 </suite>
