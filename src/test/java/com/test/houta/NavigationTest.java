@@ -1,33 +1,14 @@
 package com.test.houta;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
-import java.time.Duration;
-
-public class NavigationTest {
-    private WebDriver driver;
-    private String baseUrl = "https://haoutastore.com/";
-    private WebDriverWait wait;
-
-    @BeforeClass
-    public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-        driver.get(baseUrl);
-    }
+public class NavigationTest extends ChromeTestBase {
 
     @Test(groups = {"navigation"})
     public void testCategoryNavigation() {
