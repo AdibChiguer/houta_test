@@ -39,6 +39,66 @@ public class NavigationTest extends ChromeTestBase {
                                 "Le titre de la catégorie Xiaomi est incorrect");
         }
 
+        @Test(groups = { "navigation", "error-handling",
+                        "negative-testing" }, description = "Test de navigation vers une URL inexistante pour vérifier la gestion d'erreur 404")
+        public void testNonExistentPageNavigation() {
+                // Naviguer vers une page inexistante
+                String nonExistentUrl = baseUrl + "product-category/xxxxxxxxxxxx/";
+                driver.get(nonExistentUrl);
+
+                // Vérifier que l'URL actuelle correspond à celle demandée
+                String currentUrl = driver.getCurrentUrl();
+                Assert.assertTrue(currentUrl.contains("xxxxxxxxxxxx"),
+                                "L'URL de la page inexistante ne correspond pas à celle demandée");
+
+                // Vérifier la présence d'une page d'erreur 404 ou d'un message d'erreur
+                boolean hasErrorIndicator = false;
+
+                // Option 1: Vérifier le titre de la page pour les mots-clés d'erreur
+                String pageTitle = driver.getTitle().toLowerCase();
+                if (pageTitle.contains("404") || pageTitle.contains("not found") ||
+                                pageTitle.contains("page not found") || pageTitle.contains("erreur")) {
+                        hasErrorIndicator = true;
+                }
+
+                // Option 2: Chercher des éléments d'erreur communs
+                if (!hasErrorIndicator) {
+                        try {
+                                WebElement errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                                                By.xpath("//*[contains(text(), '404') or contains(text(), 'not found') or "
+                                                                +
+                                                                "contains(text(), 'Not Found') or contains(text(), 'page introuvable') or "
+                                                                +
+                                                                "contains(text(), 'Page non trouvée')]")));
+                                hasErrorIndicator = errorMessage.isDisplayed();
+                        } catch (Exception e) {
+                                // Continuer si aucun élément d'erreur n'est trouvé
+                        }
+                }
+
+                // Option 3: Vérifier les classes CSS communes pour les pages d'erreur
+                if (!hasErrorIndicator) {
+                        try {
+                                WebElement errorPage = driver.findElement(
+                                                By.cssSelector(".error-404, .not-found, .page-404, .error-page"));
+                                hasErrorIndicator = errorPage.isDisplayed();
+                        } catch (Exception e) {
+                                // Continuer si aucune classe d'erreur n'est trouvée
+                        }
+                }
+
+                // Option 4: Vérifier le contenu du body pour des indicateurs d'erreur
+                if (!hasErrorIndicator) {
+                        String bodyText = driver.findElement(By.tagName("body")).getText().toLowerCase();
+                        hasErrorIndicator = bodyText.contains("404") || bodyText.contains("not found") ||
+                                        bodyText.contains("page introuvable") || bodyText.contains("erreur");
+                }
+
+                Assert.assertTrue(hasErrorIndicator,
+                                "La page devrait afficher une erreur 404 ou un message d'erreur approprié pour une URL inexistante");
+
+        }
+
         @AfterClass
         public void tearDown() {
                 if (driver != null) {
