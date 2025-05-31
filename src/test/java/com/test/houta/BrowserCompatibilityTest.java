@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -19,12 +20,12 @@ import java.time.Duration;
 
 public class BrowserCompatibilityTest {
     private WebDriver driver;
-    private String baseUrl = "https://haoutastore.com/";
+    private String baseUrl = "https://www.marjanemall.ma/";
     private WebDriverWait wait;
 
     @BeforeMethod
     @Parameters("browser")
-    public void setUp(String browser) {
+    public void setUp(@Optional("chrome") String browser) {
         switch (browser.toLowerCase()) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
@@ -54,7 +55,7 @@ public class BrowserCompatibilityTest {
                 "Le titre de la page d'accueil est vide sur " + driver.getClass().getSimpleName());
 
         WebElement logo = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.cssSelector("img.normal-logo")));
+                By.cssSelector("a.logo")));
         Assert.assertTrue(logo.isDisplayed(),
                 "Le logo de la page d'accueil n'est pas affiché sur " + driver.getClass().getSimpleName());
     }
