@@ -11,7 +11,7 @@ import java.time.Duration;
 public class ChromeTestBase {
     protected WebDriver driver;
     protected WebDriverWait wait;
-    protected String baseUrl = "https://haoutastore.com/";
+    protected String baseUrl = "https://www.marjanemall.ma/";
 
     @BeforeMethod(alwaysRun = true)
     public void setup() {
