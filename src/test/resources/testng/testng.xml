@@ -37,7 +37,7 @@
             </class>
         </classes>
     </test>
-
+    
     <test name="FormTests">
         <classes>
             <class name="com.test.houta.FormTests"/>
