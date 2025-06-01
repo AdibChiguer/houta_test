@@ -43,4 +43,10 @@
             <class name="com.test.houta.FormTests"/>
         </classes>
     </test>
+
+    <test name="FilterTest">
+        <classes>
+            <class name="com.test.houta.ProductFilterAndSortTest"/>
+        </classes>
+    </test>
 </suite>
