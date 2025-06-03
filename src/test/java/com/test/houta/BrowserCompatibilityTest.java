@@ -22,7 +22,7 @@ import java.time.Duration;
 
 @Epic("Cross-Browser Testing")
 @Feature("Browser Compatibility")
-@Owner("Younes")
+@Owner("Ayoub")
 public class BrowserCompatibilityTest {
     private WebDriver driver;
     private String baseUrl = "https://haoutastore.com/";
