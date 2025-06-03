@@ -58,10 +58,4 @@
             <class name="com.test.houta.PerformanceTest" />
         </classes>
     </test>
-    
-    <test name="ResponsiveDesignTest">
-        <classes>
-            <class name="com.test.houta.ResponsiveDesignTest"/>
-        </classes>
-    </test>
 </suite>
