@@ -14,9 +14,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
 
 import java.time.Duration;
 
+@Epic("Cross-Browser Testing")
+@Feature("Browser Compatibility")
+@Owner("Ayoub")
 public class BrowserCompatibilityTest {
     private WebDriver driver;
     private String baseUrl = "https://haoutastore.com/";
