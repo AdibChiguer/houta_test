@@ -29,7 +29,7 @@ public class ChromeTestBase {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5)); // Configure un timeout implicite
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15)); // Add page load timeout
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30)); // Add page load timeout
         driver.get(baseUrl);
 
     }

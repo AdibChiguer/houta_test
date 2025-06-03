@@ -58,4 +58,10 @@
             <class name="com.test.houta.PerformanceTest" />
         </classes>
     </test>
+
+    <test name="UserAccountTests">
+      <classes>
+        <class name="com.test.houta.UserAccountTests" />
+      </classes>
+    </test>
 </suite>
