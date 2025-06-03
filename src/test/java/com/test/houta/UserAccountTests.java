@@ -16,7 +16,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
 
+
+@Epic("Tests Haouta Store")
+@Feature("Mise à jour du compte utilisateur")
+@Owner("Adib")
 public class UserAccountTests {
 
     private WebDriver driver;
