@@ -16,10 +16,20 @@ public class ChromeTestBase {
     @BeforeMethod(alwaysRun = true)
     public void setup() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+
+        // Add Chrome options for better stability
+        org.openqa.selenium.chrome.ChromeOptions options = new org.openqa.selenium.chrome.ChromeOptions();
+        options.addArguments("--disable-blink-features=AutomationControlled");
+        options.addArguments("--disable-extensions");
+        options.addArguments("--disable-plugins");
+        options.addArguments("--disable-popup-blocking");
+        options.addArguments("--disable-notifications");
+
+        driver = new ChromeDriver(options);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Configure un timeout implicite
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5)); // Configure un timeout implicite
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15)); // Add page load timeout
         driver.get(baseUrl);
 
     }
