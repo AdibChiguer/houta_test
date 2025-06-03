@@ -11,10 +11,12 @@ import java.time.Duration;
 public class ChromeTestBase {
     protected WebDriver driver;
     protected WebDriverWait wait;
-    protected String baseUrl = "https://haoutastore.com/";    @BeforeMethod(alwaysRun = true)
+    protected String baseUrl = "https://haoutastore.com/";
+
+    @BeforeMethod(alwaysRun = true)
     public void setup() {
         WebDriverManager.chromedriver().setup();
-        
+
         // Add Chrome options for better stability
         org.openqa.selenium.chrome.ChromeOptions options = new org.openqa.selenium.chrome.ChromeOptions();
         options.addArguments("--disable-blink-features=AutomationControlled");
@@ -22,7 +24,7 @@ public class ChromeTestBase {
         options.addArguments("--disable-plugins");
         options.addArguments("--disable-popup-blocking");
         options.addArguments("--disable-notifications");
-        
+
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();

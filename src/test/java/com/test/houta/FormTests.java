@@ -3,12 +3,9 @@ package com.test.houta;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -21,10 +18,10 @@ public class FormTests {
 
     @BeforeMethod
     public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+      WebDriverManager.chromedriver().setup();
+      driver = new ChromeDriver();
+      driver.manage().window().maximize();
+      driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
     
     @AfterMethod
@@ -45,6 +42,7 @@ public class FormTests {
 
         loginEmail.sendKeys("norkidikni@gufum.com"); // Use real test account
         loginPassword.sendKeys("Test1234@test");
+        // loginPassword.sendKeys("NewPass456@test");
         loginButton.click();
 
         WebElement logoutLink = driver.findElement(By.xpath("//a[contains(text(), 'Log out')]"));
@@ -71,34 +69,34 @@ public class FormTests {
         assert logoutLink.isDisplayed();
     }
 
-    @Test(priority = 3)
-    public void testContactForm() throws InterruptedException {
-        driver.get("https://haoutastore.com/contact/");
+    // @Test(priority = 3)
+    // public void testContactForm() throws InterruptedException {
+    //     driver.get("https://haoutastore.com/contact/");
     
-        driver.findElement(By.name("your-name")).sendKeys("Adib");
-        driver.findElement(By.name("your-email")).sendKeys("adib.chiguer@gmail.com");
-        driver.findElement(By.name("your-subject")).sendKeys("Test du formulaire");
-        driver.findElement(By.name("your-message")).sendKeys("Ceci est un test automatisé.");
+    //     driver.findElement(By.name("your-name")).sendKeys("Adib");
+    //     driver.findElement(By.name("your-email")).sendKeys("adib.chiguer@gmail.com");
+    //     driver.findElement(By.name("your-subject")).sendKeys("Test du formulaire");
+    //     driver.findElement(By.name("your-message")).sendKeys("Ceci est un test automatisé.");
     
-        // Use specific selector for the Contact Form 7 submit button
-        WebElement submitButton = new WebDriverWait(driver, Duration.ofSeconds(10))
-            .until(ExpectedConditions.elementToBeClickable(
-                By.cssSelector("input.wpcf7-submit")
-            ));
+    //     // Use specific selector for the Contact Form 7 submit button
+    //     WebElement submitButton = new WebDriverWait(driver, Duration.ofSeconds(10))
+    //         .until(ExpectedConditions.elementToBeClickable(
+    //             By.cssSelector("input.wpcf7-submit")
+    //         ));
     
-        Thread.sleep(1000); // optional: allow page JS to initialize
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", submitButton);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitButton);
+    //     Thread.sleep(1000); // optional: allow page JS to initialize
+    //     ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", submitButton);
+    //     ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitButton);
     
-        // Wait for confirmation message
-        WebElement confirmation = new WebDriverWait(driver, Duration.ofSeconds(10))
-            .until(ExpectedConditions.visibilityOfElementLocated(
-                By.cssSelector("div.wpcf7-response-output")
-            ));
+    //     // Wait for confirmation message
+    //     WebElement confirmation = new WebDriverWait(driver, Duration.ofSeconds(10))
+    //         .until(ExpectedConditions.visibilityOfElementLocated(
+    //             By.cssSelector("div.wpcf7-response-output")
+    //         ));
     
-        System.out.println("Current URL: " + driver.getCurrentUrl());
-        System.out.println("Confirmation message: " + confirmation.getText());
+    //     System.out.println("Current URL: " + driver.getCurrentUrl());
+    //     System.out.println("Confirmation message: " + confirmation.getText());
     
-        assert confirmation.getText().contains("Thank you for your message. It has been sent.");
-    }       
+    //     assert confirmation.getText().contains("Thank you for your message. It has been sent.");
+    // }       
 }

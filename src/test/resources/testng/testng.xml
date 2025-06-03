@@ -2,55 +2,67 @@
 <suite name="HoutaStoreTestSuite">
     <test name="NavigationTest">
         <classes>
-            <class name="com.test.houta.NavigationTest"/>
+            <class name="com.test.houta.NavigationTest" />
         </classes>
     </test>
     <test name="CartAdditionTest">
         <classes>
-            <class name="com.test.houta.CartAdditionTest"/>
+            <class name="com.test.houta.CartAdditionTest" />
         </classes>
     </test>
     <test name="CartRemovalTest">
         <classes>
-            <class name="com.test.houta.CartRemovalTest"/>
+            <class name="com.test.houta.CartRemovalTest" />
         </classes>
     </test>
     <test name="BrowserCompatibilitySuiteChrome">
-        <parameter name="browser" value="chrome"/>
+        <parameter name="browser" value="chrome" />
         <classes>
-            <class name="com.test.houta.BrowserCompatibilityTest"/>
+            <class name="com.test.houta.BrowserCompatibilityTest" />
         </classes>
     </test>
     <test name="BrowserCompatibilitySuiteFirefox">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="firefox" />
         <classes>
-            <class name="com.test.houta.BrowserCompatibilityTest"/>
+            <class name="com.test.houta.BrowserCompatibilityTest" />
         </classes>
     </test>
     <test name="BrowserCompatibilitySuiteEdge">
-        <parameter name="browser" value="edge"/>
+        <parameter name="browser" value="edge" />
         <classes>
-            <class name="com.test.houta.BrowserCompatibilityTest"/>
+            <class name="com.test.houta.BrowserCompatibilityTest" />
         </classes>
     </test>
     <test name="AllRechercheTest">
         <classes>
             <class name="com.test.houta.TestRecherche">
                 <methods>
-                    <exclude name="testRechercheAvecLongTexte"/>
+                    <exclude name="testRechercheAvecLongTexte" />
                 </methods>
             </class>
         </classes>
     </test>
-      <test name="FormTests">
+    <test name="FormTests">
         <classes>
-            <class name="com.test.houta.FormTests"/>
+            <class name="com.test.houta.FormTests" />
         </classes>
     </test>
 
     <test name="FilterTest">
         <classes>
-            <class name="com.test.houta.ProductFilterAndSortTest"/>
+            <class name="com.test.houta.ProductFilterAndSortTest" />
         </classes>
+    </test>
+
+    <test name="PerformanceTest">
+        <classes>
+            <class name="com.test.houta.PerformanceTest" />
+        </classes>
+    </test>
+
+    <test name="UserAccountTests">
+      <classes>
+        <class name="com.test.houta.UserAccountTests" />
+      </classes>
     </test>
 </suite>
