@@ -46,11 +46,16 @@
         <classes>
             <class name="com.test.houta.FormTests"/>
         </classes>
-    </test>
-
+    </test>    
     <test name="FilterTest">
         <classes>
             <class name="com.test.houta.ProductFilterAndSortTest"/>
+        </classes>
+    </test>
+    
+    <test name="ResponsiveDesignTest">
+        <classes>
+            <class name="com.test.houta.ResponsiveDesignTest"/>
         </classes>
     </test>
 </suite>
