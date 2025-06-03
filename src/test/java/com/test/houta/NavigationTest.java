@@ -5,9 +5,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+
+@Epic("Website Navigation")
+@Feature("Menu Navigation")
+@Owner("Ayoub")
 public class NavigationTest extends ChromeTestBase {
 
         @Test(groups = { "navigation", "menu-functionality",
@@ -40,7 +47,7 @@ public class NavigationTest extends ChromeTestBase {
         }
 
         @Test(groups = { "navigation", "error-handling",
-                        "negative-testing" }, description = "Test de navigation vers une URL inexistante pour vérifier la gestion d'erreur 404")
+                        "negative-testing" }, description = "Test de navigation vers une categorie inexistante pour vérifier la gestion d'erreur 404")
         public void testNonExistentPageNavigation() {
                 // Naviguer vers une page inexistante
                 String nonExistentUrl = baseUrl + "product-category/xxxxxxxxxxxx/";
@@ -99,7 +106,7 @@ public class NavigationTest extends ChromeTestBase {
 
         }
 
-        @AfterClass
+        @AfterMethod
         public void tearDown() {
                 if (driver != null) {
                         driver.quit();

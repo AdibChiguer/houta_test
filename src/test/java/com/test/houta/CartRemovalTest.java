@@ -8,6 +8,13 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+
+@Epic("Shopping Cart")
+@Feature("Remove from Cart")
+@Owner("Ayoub")
 public class CartRemovalTest extends ChromeTestBase {
 
         @Test(groups = { "cart-functionality", "e-commerce",
