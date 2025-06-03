@@ -53,4 +53,10 @@
             <class name="com.test.houta.ProductFilterAndSortTest" />
         </classes>
     </test>
+
+    <test name="PerformanceTest">
+        <classes>
+            <class name="com.test.houta.PerformanceTest" />
+        </classes>
+    </test>
 </suite>
