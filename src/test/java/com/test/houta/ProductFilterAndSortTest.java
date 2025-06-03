@@ -67,11 +67,11 @@ public class ProductFilterAndSortTest extends ChromeTestBase{
     @Severity(SeverityLevel.CRITICAL)
     public void testFiltrageParCategorieEtPrixDesc() {
         driver.get("https://haoutastore.com/product-category/smartwatches/?orderby=price-desc");
-    // 3. Attendre le rechargement des produits
+    // Attendre le rechargement des produits
         WebElement primaryDiv = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("primary")));
         wait.until(ExpectedConditions.visibilityOfNestedElementsLocatedBy(primaryDiv, By.className(CLASS_PRICE)));
 
-    // 4. Extraire et vérifier les prix comme avant
+    // Extraire et vérifier les prix comme avant
         List<WebElement> priceElements = primaryDiv.findElements(By.className(CLASS_PRICE));
         List<Integer> prices = new ArrayList<>();
         for (WebElement priceElement : priceElements) {
