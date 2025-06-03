@@ -5,6 +5,11 @@
             <class name="com.test.houta.NavigationTest"/>
         </classes>
     </test>
+    <test name="CartAdditionTest">
+        <classes>
+            <class name="com.test.houta.CartAdditionTest"/>
+        </classes>
+    </test>
     <test name="CartRemovalTest">
         <classes>
             <class name="com.test.houta.CartRemovalTest"/>
@@ -37,8 +42,7 @@
             </class>
         </classes>
     </test>
-    
-    <test name="FormTests">
+      <test name="FormTests">
         <classes>
             <class name="com.test.houta.FormTests"/>
         </classes>
