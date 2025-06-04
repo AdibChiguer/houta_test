@@ -2,6 +2,10 @@ package com.test.houta;
 
 import java.time.Duration;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +16,10 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+
+@Epic("User Account Management")
+@Feature("Authentication and Registration Forms")
+@Owner("Adib")
 public class FormTests {
 
     WebDriver driver;
@@ -33,6 +41,7 @@ public class FormTests {
 
     
     @Test(priority = 1)
+    @Story("Connexion utilisateur avec identifiants valides")
     public void testLoginForm() {
         driver.get("https://haoutastore.com/my-account/");
 
@@ -51,6 +60,7 @@ public class FormTests {
     }
 
     @Test(priority = 2)
+    @Story("Inscription d’un nouvel utilisateur avec un email unique")
     public void testRegisterForm() {
         driver.get("https://haoutastore.com/my-account/");
 
