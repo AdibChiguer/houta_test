@@ -17,7 +17,6 @@ public class ChromeTestBase {
     public void setup() {
         WebDriverManager.chromedriver().setup();
 
-        // Add Chrome options for better stability
         org.openqa.selenium.chrome.ChromeOptions options = new org.openqa.selenium.chrome.ChromeOptions();
         options.addArguments("--disable-blink-features=AutomationControlled");
         options.addArguments("--disable-extensions");
@@ -25,13 +24,20 @@ public class ChromeTestBase {
         options.addArguments("--disable-popup-blocking");
         options.addArguments("--disable-notifications");
 
+        // Ajoute les options CI uniquement si on est sur GitHub Actions
+        if (System.getenv("CI") != null) {
+            options.addArguments("--headless=new");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--window-size=1920,1080");
+        }
+
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5)); // Configure un timeout implicite
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30)); // Add page load timeout
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
         driver.get(baseUrl);
-
     }
 
     @AfterMethod(alwaysRun = true)
