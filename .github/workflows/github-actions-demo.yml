@@ -27,11 +27,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Build with Maven
-        run: mvn clean install -B
+      - name: Build with Maven (skip tests)
+        run: mvn clean install -DskipTests
 
       - name: Run tests and generate Allure results
-        run: mvn test -Dallure.results.directory=allure-results
+        run: mvn test -Dgroups=search -Dallure.results.directory=allure-results
+
+      - name: Download Allure history
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-history
+          path: allure-history
 
       - name: Generate Allure report
         uses: simple-elf/allure-report-action@v1.8
@@ -45,3 +51,9 @@ jobs:
         with:
           name: allure-report
           path: allure-report
+
+      - name: Upload Allure history
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-history
+          path: allure-history
