@@ -33,6 +33,10 @@ jobs:
       - name: Run tests and generate Allure results
         run: mvn test -Dgroups=search -Dallure.results.directory=allure-results
 
+
+      - name: Ensure allure-history directory exists
+        run: mkdir -p allure-history
+
       - name: Upload Allure history
         uses: actions/upload-artifact@v4
         with:
