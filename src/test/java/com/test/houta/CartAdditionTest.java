@@ -37,14 +37,13 @@ public class CartAdditionTest extends ChromeTestBase {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".single_add_to_cart_button")));
         
         String initialCartCount = getCartCount();
-        Allure.step("Initial cart count: " + initialCartCount);          // Step 3: Add product to cart
+        Allure.step("Initial cart count: " + initialCartCount);        // Step 3: Add product to cart
         Allure.step("Click Add to Cart button", () -> {
             // Handle potential popups or overlays first
             try {
                 // Check for and dismiss any cookie banners or popups
                 if (driver.findElements(By.cssSelector(".cookie-notice, .gdpr-notice, .popup-close, .modal-close")).size() > 0) {
                     driver.findElement(By.cssSelector(".cookie-notice, .gdpr-notice, .popup-close, .modal-close")).click();
-                    Thread.sleep(200);
                 }
             } catch (Exception e) {
                 // Ignore if no popups found
@@ -54,7 +53,6 @@ public class CartAdditionTest extends ChromeTestBase {
             
             // Scroll to the button to ensure it's visible and clickable
             ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", addToCartButton);
-            Thread.sleep(200);
             
             // Wait for the button to be clickable
             wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
@@ -67,23 +65,22 @@ public class CartAdditionTest extends ChromeTestBase {
                 ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", addToCartButton);
             }
             
-              // Wait for the add to cart action to complete
+            // Wait for the add to cart action to complete
             try {
                 wait.until(ExpectedConditions.or(
                     ExpectedConditions.presenceOfElementLocated(By.cssSelector(".woocommerce-message")),
                     ExpectedConditions.urlContains("cart"),
                     ExpectedConditions.presenceOfElementLocated(By.cssSelector(".cart-contents"))
                 ));
-                Thread.sleep(200); // Brief wait to ensure cart is updated
             } catch (Exception e) {
-                Thread.sleep(500); // Give time for cart update
+                // Continue if no specific success indicator found
             }
-        });
-          // Step 4: Wait for cart update and verify cart count increased
+        });        // Step 4: Wait for cart update and verify cart count increased
         Allure.step("Verify cart count increased", () -> {
             try {
-                // Wait a moment for cart count to update
-                Thread.sleep(500);
+                // Wait briefly for cart count to update
+                wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(
+                    By.cssSelector("span.cart-number, .cart-contents .count, .cart-count"), initialCartCount)));
                 String newCartCount = getCartCount();
                 Assert.assertNotEquals(initialCartCount, newCartCount, "Cart count should have changed after adding product");
             } catch (Exception e) {
@@ -170,15 +167,20 @@ public class CartAdditionTest extends ChromeTestBase {
     @Story("Add product with specific quantity")
     @Description("Verify that a user can add the same product with quantity 2 and prices update correctly")
     @Severity(SeverityLevel.CRITICAL)
-    public void testAddProductWithQuantityTwo() {
-          // Step 1: Clear cart first (simulate new session)
+    public void testAddProductWithQuantityTwo() {        // Step 1: Clear cart first (simulate new session)
         Allure.step("Clear existing cart", () -> {
             driver.get("https://haoutastore.com/cart-2/");
             try {
-                // Try to clear cart if items exist
+                // Try to clear cart if items exist using more efficient approach
+                wait.until(ExpectedConditions.or(
+                    ExpectedConditions.presenceOfElementLocated(By.cssSelector(".remove")),
+                    ExpectedConditions.presenceOfElementLocated(By.cssSelector(".cart-empty"))
+                ));
+                
                 if (driver.findElements(By.cssSelector(".remove")).size() > 0) {
                     driver.findElements(By.cssSelector(".remove")).forEach(WebElement::click);
-                    Thread.sleep(1000); // Wait for cart to clear
+                    // Wait for cart to be empty instead of fixed sleep
+                    wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".cart-empty")));
                 }
             } catch (Exception e) {
                 // Cart might already be empty
@@ -209,11 +211,12 @@ public class CartAdditionTest extends ChromeTestBase {
                         return; // Skip quantity setting if not found
                     }
                 }
-            }
-              if (quantityInput != null) {
+            }            if (quantityInput != null) {
                 quantityInput.clear();
                 quantityInput.sendKeys("2");
-                Thread.sleep(200); // Brief wait for input to register
+                
+                // Wait for input to be registered using explicit wait
+                wait.until(ExpectedConditions.attributeToBe(quantityInput, "value", "2"));
                 
                 // Verify the quantity was set
                 String setValue = quantityInput.getAttribute("value");
@@ -295,10 +298,8 @@ public class CartAdditionTest extends ChromeTestBase {
         });// Step 5: Add product to cart with quantity 2
         Allure.step("Add product to cart with quantity 2", () -> {
             WebElement addToCartButton = driver.findElement(By.cssSelector(".single_add_to_cart_button"));
-            
-            // Scroll to the button to ensure it's visible and clickable
+              // Scroll to the button to ensure it's visible and clickable
             ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", addToCartButton);
-            Thread.sleep(200);
             
             // Wait for the button to be clickable
             wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
@@ -310,8 +311,7 @@ public class CartAdditionTest extends ChromeTestBase {
                 // Use JavaScript click as fallback
                 ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", addToCartButton);
             }
-            
-              // Wait for the add to cart action to complete
+            // Wait for the add to cart action to complete
             try {
                 // Wait for either success message or page redirect
                 wait.until(ExpectedConditions.or(
@@ -319,10 +319,8 @@ public class CartAdditionTest extends ChromeTestBase {
                     ExpectedConditions.urlContains("cart"),
                     ExpectedConditions.presenceOfElementLocated(By.cssSelector(".cart-contents"))
                 ));
-                Thread.sleep(200); // Additional wait to ensure cart is updated
             } catch (Exception e) {
-                // Continue if no specific success indicator found
-                Thread.sleep(500); // Give more time for cart update
+                // Continue if no specific success indicator found - reduced wait time
             }
         });
         
@@ -346,10 +344,8 @@ public class CartAdditionTest extends ChromeTestBase {
                 // Cart might be empty, check for empty cart message
                 if (driver.findElements(By.cssSelector(".cart-empty")).size() > 0) {
                     Assert.fail("Cart is empty - product was not added successfully");                } else {
-                    // Wait a bit more and try again
+                    // Wait more efficiently and try again
                     try {
-                        Thread.sleep(1000);
-                        driver.navigate().refresh();
                         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".cart_item")));
                     } catch (Exception e) {
                         Assert.fail("Cart items not found even after refresh");
