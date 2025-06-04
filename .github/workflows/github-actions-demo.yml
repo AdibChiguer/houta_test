@@ -30,5 +30,18 @@ jobs:
       - name: Build with Maven
         run: mvn clean install -B
 
-      - name: Run tests
-        run: mvn testfeat(ci): add GitHub Actions pipeline for Maven build and tests
+      - name: Run tests and generate Allure results
+        run: mvn test -Dallure.results.directory=allure-results
+
+      - name: Generate Allure report
+        uses: simple-elf/allure-report-action@v1.8
+        with:
+          allure_results: allure-results
+          allure_report: allure-report
+          allure_history: allure-history
+
+      - name: Upload Allure report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report
