@@ -33,11 +33,18 @@ jobs:
       - name: Run tests and generate Allure results
         run: mvn test -Dgroups=search -Dallure.results.directory=allure-results
 
+      - name: Upload Allure history
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-history
+          path: allure-history
+
       - name: Download Allure history
         uses: actions/download-artifact@v4
         with:
           name: allure-history
           path: allure-history
+        continue-on-error: true
 
       - name: Generate Allure report
         uses: simple-elf/allure-report-action@v1.8
