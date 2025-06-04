@@ -1,0 +1,517 @@
+body {
+  font-family: "Calibri", Arial, sans-serif;
+  margin: 40px;
+  background-color: #f8f9fa;
+  line-height: 1.6;
+  color: #2c3e50;
+}
+
+#university-logo {
+  max-width: 100%;
+  height: auto;
+
+  display: block;
+  margin: 0 auto;
+
+  margin-bottom: 40px;
+}
+
+.container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2.2em;
+  font-weight: bold;
+}
+
+.header p {
+  margin: 10px 0 0 0;
+  font-size: 1.1em;
+  opacity: 0.9;
+}
+
+.section {
+  margin: 30px 0;
+}
+
+.section h2 {
+  color: #2c3e50;
+  border-bottom: 3px solid #3498db;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 11px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+th {
+  background: linear-gradient(135deg, #5b9bd5, #467fb8);
+  color: white;
+  padding: 12px 8px;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid #4a90c2;
+  font-size: 10px;
+}
+
+td {
+  padding: 10px 8px;
+  border: 1px solid #e0e0e0;
+  text-align: left;
+  vertical-align: top;
+  word-wrap: break-word;
+}
+
+tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+tr:hover {
+  background-color: #e3f2fd;
+  transition: background-color 0.2s;
+}
+
+.status-ok {
+  background-color: #ffeaa7;
+  color: #2d3436;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 9px;
+}
+
+.status-ok {
+  background-color: #2ecc71;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 9px;
+}
+
+.status-ko {
+  background-color: #e74c3c;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 9px;
+}
+
+.tag {
+  background-color: #74b9ff;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 8px;
+  margin: 1px;
+  display: inline-block;
+}
+
+.tag.performance {
+  background-color: #e17055;
+}
+.tag.navigation {
+  background-color: #00b894;
+}
+.tag.cart {
+  background-color: #fdcb6e;
+}
+.tag.error {
+  background-color: #d63031;
+}
+.tag.cross-browser {
+  background-color: #6c5ce7;
+}
+
+.test-title {
+  font-weight: bold;
+  color: #2c3e50;
+  font-size: 11px;
+}
+
+.objective {
+  line-height: 1.4;
+  font-size: 10px;
+}
+
+.steps {
+  line-height: 1.4;
+  font-size: 9px;
+}
+
+.expected-result {
+  line-height: 1.4;
+  font-size: 9px;
+}
+
+.summary-section {
+  background: linear-gradient(135deg, #e8f4fd, #f0f8ff);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 30px 0;
+  border-left: 5px solid #3498db;
+}
+
+.notes-section {
+  background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 30px 0;
+  border-left: 5px solid #f39c12;
+}
+
+.performance-metrics {
+  background: linear-gradient(135deg, #d4edda, #c3e6cb);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 30px 0;
+  border-left: 5px solid #28a745;
+}
+
+.col-title {
+  width: 14%;
+}
+.col-tag {
+  width: 11%;
+}
+.col-objective {
+  width: 18%;
+}
+.col-preconditions {
+  width: 14%;
+}
+.col-steps {
+  width: 20%;
+}
+.col-expected {
+  width: 12%;
+}
+.col-result {
+  width: 6%;
+}
+.col-status {
+  width: 5%;
+}
+
+.section p {
+  margin-bottom: 15px; /* Ajoute un espacement entre les paragraphes */
+}
+
+.section p:last-child {
+  margin-bottom: 0; /* Supprime l'espacement après le dernier paragraphe d'une section */
+}
+
+h3 {
+  margin-top: 0;
+  color: #2c3e50;
+  font-size: 1.2em;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.metric-card {
+  background: white;
+  padding: 15px;
+  border-radius: 6px;
+  border-left: 4px solid #3498db;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.metric-value {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.metric-label {
+  font-size: 0.9em;
+  color: #7f8c8d;
+  margin-top: 5px;
+}
+
+.credits {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1em;
+}
+
+.credits p {
+  margin: 5px 0;
+}
+
+.credits strong {
+  font-weight: bold;
+}
+
+/* @media print {
+  body {
+    margin: 20px;
+  }
+  #university-logo {
+    margin-bottom: 20px;
+  }
+  .container {
+    box-shadow: none;
+  }
+  .header {
+    background: #667eea !important;
+  }
+} */
+
+@media print {
+  /* --- General Print Adjustments --- */
+  body {
+    /* Use a smaller margin for printing */
+    margin: 20px !important;
+    /* Ensure text is black for better contrast on paper */
+    color: #000 !important;
+    /* Ensure background is white */
+    background-color: #fff !important;
+    /* Use a standard print font size unit */
+    font-size: 11pt;
+  }
+
+  /* Force elements to print their background colors and images */
+  /* This is crucial for headers, status badges, tags, etc. */
+  * {
+    -webkit-print-color-adjust: exact !important; /* Chrome, Safari */
+    color-adjust: exact !important; /* Standard */
+  }
+
+  /* Remove box shadows which don't usually print well or are unnecessary */
+  .container,
+  table,
+  .metric-card {
+    box-shadow: none !important;
+  }
+
+  /* Remove hover effects in print */
+  tr:hover {
+    background-color: transparent !important;
+    color: inherit !important;
+  }
+
+  /* Ensure specific background colors/gradients print */
+  .header {
+    /* Using a solid color fallback for gradients in print */
+    background: #667eea !important;
+    color: white !important; /* Ensure text is white */
+  }
+  th {
+    background: #5b9bd5 !important; /* Solid color fallback */
+    color: white !important; /* Ensure text is white */
+    border-color: #4a90c2 !important; /* Ensure borders print */
+  }
+  .status-ok {
+    background-color: #2ecc71 !important;
+    color: white !important;
+  }
+  .status-ko {
+    background-color: #e74c3c !important;
+    color: white !important;
+  }
+  .tag {
+    background-color: #74b9ff !important;
+    color: white !important;
+  }
+  /* Ensure specific tag colors print */
+  .tag.performance {
+    background-color: #e17055 !important;
+  }
+  .tag.navigation {
+    background-color: #00b894 !important;
+  }
+  .tag.cart {
+    background-color: #fdcb6e !important;
+  }
+  .tag.error {
+    background-color: #d63031 !important;
+  }
+  .tag.cross-browser {
+    background-color: #6c5ce7 !important;
+  }
+
+  /* Ensure background highlights and borders print for section boxes */
+  .summary-section {
+    background: #e8f4fd !important;
+    border-left-color: #3498db !important;
+  }
+  .notes-section {
+    background: #fff3cd !important;
+    border-left-color: #f39c12 !important;
+  }
+  .performance-metrics {
+    background: #d4edda !important;
+    border-left-color: #28a745 !important;
+  }
+  .metric-card {
+    background: white !important; /* Ensure white background for card body */
+    border-left-color: #3498db !important; /* Ensure border prints */
+  }
+
+  /* --- Element Spacing and Layout --- */
+  #university-logo {
+    margin-bottom: 20px !important; /* Keep the reduced margin for print */
+  }
+
+  .container {
+    /* Allow container to take full width (minus body margins) */
+    max-width: 100% !important;
+    margin: 0 auto !important; /* Center it */
+    padding: 20px !important; /* Adjust padding */
+  }
+
+  .section {
+    /* Slightly reduce margin between sections for print */
+    margin: 20px 0 !important;
+  }
+
+  .section h2 {
+    /* Try to avoid page breaks immediately after a heading */
+    page-break-after: avoid;
+    break-after: avoid; /* CSS3 property */
+  }
+
+  .section p {
+    /* Add space between paragraphs */
+    margin-bottom: 10px !important; /* Slightly less than screen margin */
+  }
+  .section p:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* Table Adjustments */
+  table {
+    margin: 15px 0 !important;
+  }
+  td,
+  th {
+    /* Adjust padding slightly for print */
+    padding: 8px 6px !important;
+  }
+
+  /* --- Font Size Adjustments for Readability --- */
+  /* Adjust base font sizes using 'pt' for print */
+  table,
+  td {
+    font-size: 10pt !important;
+    line-height: 1.4 !important;
+  }
+  th {
+    font-size: 9pt !important;
+  } /* Headers can be slightly smaller */
+  .test-title {
+    font-size: 10pt !important;
+  } /* Match td font size */
+
+  /* Further adjustments for smaller text */
+  .objective {
+    font-size: 9pt !important;
+    line-height: 1.3 !important;
+  }
+  .steps,
+  .expected-result {
+    font-size: 8pt !important;
+    line-height: 1.3 !important;
+  }
+  .tag {
+    font-size: 7pt !important;
+    padding: 1px 4px !important;
+  } /* Smallest text, minimal padding */
+  .metric-value {
+    font-size: 1.3em !important;
+  } /* Keep relatively large */
+  .metric-label {
+    font-size: 8pt !important;
+  } /* Increase from 0.9em */
+  .credits p {
+    font-size: 9pt !important;
+  }
+
+  /* --- Specific Layout Breakdowns --- */
+  /* Disable CSS Grid layout for print and stack metric cards */
+  .metrics-grid {
+    display: block !important; /* Override grid display */
+    gap: 0 !important; /* Remove gap */
+  }
+  .metric-card {
+    margin-bottom: 10px !important; /* Add space between stacked cards */
+  }
+
+  /* Disable multi-column layout for lists in print */
+  .summary-section ul {
+    columns: auto !important; /* Override columns property */
+    -webkit-columns: auto !important;
+    column-gap: 0 !important; /* Remove gap */
+    list-style-position: inside; /* Optional: ensure bullets are visible */
+    padding-left: 0 !important; /* Remove default padding if list-style-position is inside */
+  }
+  .summary-section li {
+    margin-bottom: 4px !important; /* Add space between list items */
+  }
+
+  /* --- Page Break Control --- */
+  /* Encourage tables not to break inside if possible */
+  table {
+    page-break-inside: auto;
+    break-inside: auto;
+  }
+  tr {
+    page-break-inside: avoid; /* Try to keep rows on the same page */
+    break-inside: avoid;
+  }
+  td {
+    page-break-inside: avoid; /* Also try to keep cell content together */
+    break-inside: avoid;
+  }
+
+  /* Prevent specific sections/blocks from breaking inside if they fit on a single page */
+  .section,
+  .summary-section,
+  .notes-section,
+  .performance-metrics,
+  .metric-card {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Ensure footer stays with content if possible */
+  .credits,
+  .container > div:last-child {
+    /* Selects the last div inside container (the footer-like one) */
+    page-break-before: avoid;
+    break-before: avoid;
+  }
+}

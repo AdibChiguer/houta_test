@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Rapport de Tests Complet - HaoutaStore.com</title>
+  </head>
+  <body>
+    <img
+      id="university-logo"
+      src="usmba-logo.png"
+      alt="Logo et nom de l'Université Sidi Mohamed Ben Abdellah de Fès"
+    />
+    <div class="container">
+      <div class="header">
+        <h1>📋 RAPPORT DE TESTS</h1>
+        <p>HaoutaStore.com - Site E-commerce</p>
+        <p style="font-size: 0.9em; margin-top: 15px">
+          Année Universitaire: <span id="currentDate">2024 - 2025</span>
+        </p>
+      </div>
+      <div class="credits">
+        <p>
+          <strong>Réalisé par :</strong> Mouhssine Ayoub, Chiguer Adib, Marsi
+          Soufiane et Zhari Younes
+        </p>
+        <p><strong>Encadré par :</strong> Mme Boukil</p>
+      </div>
+
+      <div class="section">
+        <h2>📄 Introduction</h2>
+        <p>
+          Ce rapport de tests documente en détail les procédures et les
+          résultats des validations fonctionnelles et non fonctionnelles menées
+          sur la plateforme e-commerce HaoutaStore.com. L'objectif principal de
+          cette campagne de tests était d'évaluer la fiabilité, l'ergonomie, les
+          performances et la compatibilité multi-navigateurs du site web.
+        </p>
+        <p>
+          Les domaines couverts incluent la recherche et le filtrage des
+          produits, les formulaires (connexion, inscription, contact), la
+          gestion des comptes utilisateurs, la navigation générale, ainsi que
+          des analyses de performance technique et des tests de compatibilité
+          sur différents navigateurs. Ce travail a été effectué par l'équipe
+          mentionnée dans les crédits dans le cadre de l'année universitaire
+          2024-2025.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>🔍 Tests de Recherche et Filtrage</h2>
+        <table>
+          <thead>
+            <tr>
+              <th class="col-title">Titre du test</th>
+              <th class="col-tag">Tags</th>
+              <th class="col-objective">Objectif</th>
+              <th class="col-preconditions">Préconditions</th>
+              <th class="col-steps">Étapes</th>
+              <th class="col-expected">Résultat attendu</th>
+              <th class="col-result">Résultat</th>
+              <th class="col-status">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="test-title">
+                Recherche de produits par mot-clé "batterie"
+              </td>
+              <td>
+                <div class="tag search">search</div>
+              </td>
+              <td class="objective">
+                Vérifier que la fonctionnalité de recherche affiche uniquement
+                des produits contenant le mot-clé "batterie" (ou "battery") dans
+                le titre ou dans la description détaillée.
+              </td>
+              <td>
+                • L'utilisateur accède à la page d'accueil<br />
+                • Le site web est accessible et fonctionnel
+              </td>
+              <td class="steps">
+                1. Saisir le mot-clé "batterie" dans le champ de recherche<br />
+                2. Lancer la recherche (touche Entrée)<br />
+                3. Vérifier chaque produit visible<br />
+                4. Si titre ne contient pas le mot-clé, vérifier la
+                description<br />
+                5. Revenir à la liste des résultats
+              </td>
+              <td class="expected-result">
+                • Tous les produits ont le mot-clé dans titre ou description<br />
+                • Aucun produit non pertinent affiché
+              </td>
+              <td style="text-align: center">
+                Tous les produits affichés ont le mot-clé
+              </td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="test-title">
+                Recherche avec un mot-clé n'ayant aucun produit correspondant
+              </td>
+              <td>
+                <div class="tag search">search</div>
+              </td>
+              <td class="objective">
+                Vérifier que la recherche retourne une liste vide et affiche un
+                message approprié
+              </td>
+              <td>
+                • L'utilisateur est sur la page d'accueil<br />
+                • Le site est accessible
+              </td>
+              <td class="steps">
+                1. Saisir un mot-clé inexistant<br />
+                2. Lancer la recherche<br />
+                3. Vérifier les résultats affichés<br />
+                4. Vérifier le message d'information
+              </td>
+              <td class="expected-result">
+                • Aucun produit affiché<br />
+                • Message clair indiquant aucun résultat
+              </td>
+
+              <td style="text-align: center">
+                Aucun produit affiché, message présent
+              </td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="test-title">Recherche avec une chaîne très longue</td>
+              <td>
+                <div class="tag search">search</div>
+              </td>
+              <td class="objective">
+                Vérifier que le champ de recherche gère les entrées longues sans
+                erreur
+              </td>
+              <td>• L'utilisateur est sur la page d'accueil</td>
+              <td class="steps">
+                1. Aller sur la page d'accueil<br />
+                2. Saisir une chaîne de plus de 300 caractères<br />
+                3. Appuyer sur Entrée
+              </td>
+              <td class="expected-result">
+                • Aucun plantage<br />
+                • Affichage d'aucun produit ou message approprié
+              </td>
+              <td style="text-align: center">Tous les produits affichés</td>
+              <td style="text-align: center">
+                <span class="status-ko">KO</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="test-title">Recherche insensible à la casse</td>
+              <td>
+                <div class="tag search">search</div>
+              </td>
+              <td class="objective">
+                Vérifier que la recherche fonctionne avec différentes
+                capitalisations
+              </td>
+              <td>• L'utilisateur est sur la page d'accueil</td>
+              <td class="steps">
+                1. Aller sur la page d'accueil<br />
+                2. Saisir "BaTTeRy" (variation de casse)<br />
+                3. Appuyer sur Entrée
+              </td>
+              <td class="expected-result">
+                • Résultats incluent les produits pertinents quel que soit le
+                cas utilisé
+              </td>
+              <td style="text-align: center">
+                Résultats corrects avec différentes capitalisations
+              </td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="test-title">Filtrage par catégorie "Smartwatches"</td>
+              <td>
+                <div class="tag filtrage">filtrage</div>
+              </td>
+              <td class="objective">
+                Vérifier que seuls les produits de la catégorie "Smartwatches"
+                sont affichés
+              </td>
+              <td>• Le site contient une catégorie "Smartwatches"</td>
+              <td class="steps">
+                1. Aller sur la page d'accueil<br />
+                2. Cliquer sur la catégorie "Smartwatches"<br />
+                3. Vérifier les produits affichés
+              </td>
+              <td class="expected-result">
+                • Tous les produits affichés appartiennent à la catégorie
+              </td>
+              <td style="text-align: center">
+                Tous les produits sont de la catégorie
+              </td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="test-title">
+                Filtrage combiné catégorie + tri prix décroissant
+              </td>
+              <td>
+                <div class="tag filtrage">filtrage</div>
+              </td>
+              <td class="objective">
+                Vérifier que la liste est bien filtrée par catégorie et triée
+                par prix décroissant
+              </td>
+              <td>• L'utilisateur est sur la page d'accueil</td>
+              <td class="steps">
+                1. Cliquer sur le lien Smartwatches<br />
+                2. Choisir "Price High" dans le menu "Sort by"<br />
+                3. Récupérer les prix affichés<br />
+                4. Vérifier l'ordre des prix
+              </td>
+              <td class="expected-result">
+                • Produits de la catégorie Smartwatches<br />
+                • Prix dans l'ordre décroissant
+              </td>
+              <td style="text-align: center">
+                Produits correctement filtrés et triés
+              </td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>📝 Tests de Formulaires</h2>
+        <table>
+          <thead>
+            <tr>
+              <th class="col-title">Titre du test</th>
+              <th class="col-tag">Tags</th>
+              <th class="col-objective">Objectif</th>
+              <th class="col-preconditions">Préconditions</th>
+              <th class="col-steps">Étapes</th>
+              <th class="col-expected">Résultat attendu</th>
+              <th class="col-steps">Résultat</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="test-title">Test de connexion utilisateur</td>
+              <td>
+                <div class="tag form">form</div>
+                <div class="tag authentication">authentication</div>
+                <div class="tag">login</div>
+              </td>
+              <td class="objective">
+                Vérifier la fonctionnalité de connexion avec des identifiants
+                valides
+              </td>
+              <td>
+                • Page de connexion accessible<br />
+                • Compte utilisateur valide existant<br />
+                • Formulaire de connexion fonctionnel
+              </td>
+              <td class="steps">
+                1. Accéder à /my-account/<br />
+                2. Saisir email utilisateur<br />
+                3. Saisir mot de passe<br />
+                4. Cliquer sur "Se connecter"<br />
+                5. Vérifier redirection<br />
+                6. Localiser lien déconnexion
+              </td>
+              <td class="expected-result">
+                • Redirection vers /my-account<br />
+                • Lien "Log out" visible<br />
+                • Connexion réussie
+              </td>
+              <td style="text-align: center">Connexion réussie</td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="test-title">Test d'inscription utilisateur</td>
+              <td>
+                <div class="tag form">form</div>
+                <div class="tag authentication">authentication</div>
+                <div class="tag">registration</div>
+              </td>
+              <td class="objective">
+                Vérifier la fonctionnalité d'inscription avec un email unique
+              </td>
+              <td>
+                • Page d'inscription accessible<br />
+                • Formulaire d'inscription fonctionnel<br />
+                • Email unique généré automatiquement
+              </td>
+              <td class="steps">
+                1. Accéder à /my-account/<br />
+                2. Générer email unique avec timestamp<br />
+                3. Saisir email dans champ inscription<br />
+                4. Cliquer sur "S'inscrire"<br />
+                5. Vérifier redirection<br />
+                6. Localiser lien déconnexion
+              </td>
+              <td class="expected-result">
+                • Compte créé automatiquement<br />
+                • Redirection vers /my-account<br />
+                • Lien "Log out" visible<br />
+                • Inscription réussie
+              </td>
+              <td style="text-align: center">Inscription réussie</td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="test-title">Test de formulaire de contact</td>
+              <td>
+                <div class="tag form">form</div>
+                <div class="tag contact">contact</div>
+                <div class="tag">cf7</div>
+              </td>
+              <td class="objective">
+                Vérifier l'envoi du formulaire de contact Contact Form 7
+              </td>
+              <td>
+                • Page de contact accessible<br />
+                • Contact Form 7 configuré<br />
+                • Champs requis disponibles
+              </td>
+              <td class="steps">
+                1. Accéder à /contact/<br />
+                2. Remplir champ nom<br />
+                3. Remplir champ email<br />
+                4. Remplir champ sujet<br />
+                5. Remplir champ message<br />
+                6. Cliquer sur bouton d'envoi<br />
+                7. Attendre message de confirmation
+              </td>
+              <td class="expected-result">
+                • Formulaire soumis avec succès<br />
+                • Message "Thank you for your message. It has been sent."<br />
+                • Confirmation visible
+              </td>
+              <td style="text-align: center">Formulaire envoyé avec succès</td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>👤 Tests de Gestion de Compte</h2>
+        <table>
+          <thead>
+            <tr>
+              <th class="col-title">Titre du test</th>
+              <th class="col-tag">Tags</th>
+              <th class="col-objective">Objectif</th>
+              <th class="col-preconditions">Préconditions</th>
+              <th class="col-steps">Étapes</th>
+              <th class="col-expected">Résultat attendu</th>
+              <th class="col-steps">Résultat</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="test-title">
+                Test de mise à jour du profil utilisateur
+              </td>
+              <td>
+                <div class="tag account">account</div>
+                <div class="tag authentication">authentication</div>
+                <div class="tag">profile-update</div>
+              </td>
+              <td class="objective">
+                Vérifier la mise à jour complète du profil utilisateur incluant
+                changement de mot de passe
+              </td>
+              <td>
+                • Compte utilisateur existant<br />
+                • Page mon compte accessible<br />
+                • Détails du compte modifiables
+              </td>
+              <td class="steps">
+                1. Se connecter avec identifiants<br />
+                2. Accéder aux détails du compte<br />
+                3. Modifier prénom, nom, nom d'affichage<br />
+                4. Saisir mot de passe actuel<br />
+                5. Définir nouveau mot de passe<br />
+                6. Confirmer nouveau mot de passe<br />
+                7. Sauvegarder les modifications<br />
+                8. Se déconnecter et reconnecter<br />
+                9. Vérifier connexion avec nouveau mot de passe
+              </td>
+              <td class="expected-result">
+                • Profil mis à jour avec succès<br />
+                • Message de confirmation affiché<br />
+                • Nouveau mot de passe fonctionnel<br />
+                • Reconnexion réussie
+              </td>
+              <td style="text-align: center">Mise à jour du profil réussie</td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>🧭 Tests de Navigation</h2>
+        <table>
+          <thead>
+            <tr>
+              <th class="col-title">Titre du test</th>
+              <th class="col-tag">Tags</th>
+              <th class="col-objective">Objectif</th>
+              <th class="col-preconditions">Préconditions</th>
+              <th class="col-steps">Étapes</th>
+              <th class="col-expected">Résultat attendu</th>
+              <th class="col-result">Résultat</th>
+              <th class="col-status">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="test-title">
+                Test de navigation par survol - Catégorie Xiaomi
+              </td>
+              <td>
+                <div class="tag navigation">navigation</div>
+                <div class="tag">menu-functionality</div>
+                <div class="tag">user-experience</div>
+              </td>
+              <td class="objective">
+                Valider la navigation par survol du menu principal vers la
+                sous-catégorie Xiaomi avec vérification de l'URL et du titre de
+                la page
+              </td>
+              <td>
+                • Site accessible<br />
+                • Menu "Smartphone" disponible<br />
+                • Sous-menu Xiaomi configuré
+              </td>
+              <td class="steps">
+                1. Survoler le menu "Smartphone"<br />
+                2. Attendre la visibilité du sous-menu<br />
+                3. Cliquer sur le lien "Xiaomi"<br />
+                4. Vérifier l'URL contient "xiaomi"<br />
+                5. Vérifier l'affichage du titre de catégorie<br />
+                6. Valider que le titre contient "Xiaomi"
+              </td>
+              <td class="expected-result">
+                • Redirection vers /xiaomi/<br />
+                • Titre "Xiaomi" affiché<br />
+                • Page de catégorie correcte
+              </td>
+              <td style="text-align: center">Redirection vers Xiaomi réussie</td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="test-title">Test de gestion d'erreur 404</td>
+              <td>
+                <div class="tag navigation">navigation</div>
+                <div class="tag error">error-handling</div>
+                <div class="tag">negative-testing</div>
+              </td>
+              <td class="objective">
+                Vérifier la gestion appropriée des erreurs 404 lors de la
+                navigation vers une categorie inexistante
+              </td>
+              <td>
+                • Site accessible<br />
+                • URL de base fonctionnelle<br />
+                • Gestion d'erreur 404 configurée
+              </td>
+              <td class="steps">
+                1. Naviguer vers categorie inexistante<br />
+                2. Vérifier l'URL actuelle<br />
+                3. Analyser le titre de la page<br />
+                4. Rechercher éléments d'erreur<br />
+                5. Vérifier classes CSS d'erreur<br />
+                6. Analyser contenu du body
+              </td>
+              <td class="expected-result">
+                • Page d'erreur 404 affichée<br />
+                • Message d'erreur approprié<br />
+                • Indicateurs d'erreur présents
+              </td>
+              <td style="text-align: center">Page 404 correcte affichée</td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="test-title">
+                Test de suppression d'article du panier
+              </td>
+              <td>
+                <div class="tag cart">cart-functionality</div>
+                <div class="tag">e-commerce</div>
+                <div class="tag">regression</div>
+              </td>
+              <td class="objective">
+                Vérifier la fonctionnalité de suppression d'un article du panier
+                avec validation du compteur et message panier vide
+              </td>
+              <td>
+                • Site e-commerce accessible<br />
+                • Produit "Batterie Rechargeable USB Prumyls" disponible<br />
+                • Fonctionnalité panier opérationnelle
+              </td>
+              <td class="steps">
+                1. Accéder à la page produit<br />
+                2. Vérifier compteur panier initial<br />
+                3. Ajouter l'article au panier<br />
+                4. Valider mise à jour compteur<br />
+                5. Aller à la page panier<br />
+                6. Vérifier présence de l'article<br />
+                7. Supprimer l'article<br />
+                8. Vérifier panier vide et message
+              </td>
+              <td class="expected-result">
+                • Article ajouté avec succès<br />
+                • Compteur mis à jour (+1)<br />
+                • Article supprimé du panier<br />
+                • Message "Panier vide" affiché
+              </td>
+              <td style="text-align: center">Article supprimé, panier vide</td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>⚡ Tests de Performance</h2>
+        <table>
+          <thead>
+            <tr>
+              <th class="col-title">Titre du test</th>
+              <th class="col-tag">Tags</th>
+              <th class="col-objective">Objectif</th>
+              <th class="col-preconditions">Préconditions</th>
+              <th class="col-steps">Étapes</th>
+              <th class="col-expected">Résultat attendu</th>
+              <th class="col-result">Résultat</th>
+              <th class="col-status">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="test-title">
+                Test du temps de chargement de la page d'accueil
+              </td>
+              <td>
+                <div class="tag performance">performance</div>
+                <div class="tag">load-time</div>
+                <div class="tag">critical</div>
+              </td>
+              <td class="objective">
+                Mesurer et valider le temps de chargement de la page d'accueil
+                (≤ 5 secondes)
+              </td>
+              <td>
+                • Site accessible<br />
+                • Connexion réseau stable<br />
+                • ChromeTestBase configuré
+              </td>
+              <td class="steps">
+                1. Enregistrer l'heure de début<br />
+                2. Naviguer vers la page d'accueil<br />
+                3. Attendre visibilité du body<br />
+                4. Calculer le temps écoulé<br />
+                5. Comparer avec seuil accepté (5s)<br />
+                6. Afficher le résultat
+              </td>
+              <td class="expected-result">
+                • Temps ≤ 5000 ms<br />
+                • Page entièrement chargée<br />
+                • Éléments visibles
+              </td>
+              <td style="text-align: center">Chargement en 1482 ms</td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="test-title">Test des métriques de performance DOM</td>
+              <td>
+                <div class="tag performance">performance</div>
+                <div class="tag">dom-timing</div>
+                <div class="tag">critical</div>
+              </td>
+              <td class="objective">
+                Analyser les métriques DOM via Navigation Timing API (DOM
+                Content Loaded ≤ 3s)
+              </td>
+              <td>
+                • Navigation Timing API supportée<br />
+                • JavaScript activé<br />
+                • Site accessible
+              </td>
+              <td class="steps">
+                1. Charger la page d'accueil<br />
+                2. Exécuter script Performance API<br />
+                3. Récupérer domContentLoadedTime<br />
+                4. Récupérer pageLoadTime<br />
+                5. Récupérer domInteractiveTime<br />
+                6. Valider les seuils
+              </td>
+              <td class="expected-result">
+                • DOM Content Loaded ≤ 3000 ms<br />
+                • Page Load ≤ 5000 ms<br />
+                • Métriques détaillées affichées
+              </td>
+              <td style="text-align: center">DOM Content Loaded: 1056 ms</td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="test-title">Test du chargement des ressources</td>
+              <td>
+                <div class="tag performance">performance</div>
+                <div class="tag">resource-loading</div>
+                <div class="tag">regression</div>
+              </td>
+              <td class="objective">
+                Analyser le nombre et temps de chargement des ressources (≤ 200
+                ressources, ≤ 10 ressources lentes)
+              </td>
+              <td>
+                • Resource Timing API supportée<br />
+                • JavaScript activé<br />
+                • Page entièrement chargée
+              </td>
+              <td class="steps">
+                1. Charger la page d'accueil<br />
+                2. Exécuter script Resource API<br />
+                3. Analyser chaque ressource<br />
+                4. Identifier ressources lentes (>2s)<br />
+                5. Calculer temps moyen<br />
+                6. Valider les seuils
+              </td>
+              <td class="expected-result">
+                • ≤ 200 ressources totales<br />
+                • ≤ 10 ressources lentes<br />
+                • Analyse détaillée affichée
+              </td>
+              <td style="text-align: center">151 ressources, 0 lentes</td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="test-title">Test de l'optimisation des images</td>
+              <td>
+                <div class="tag performance">performance</div>
+                <div class="tag">image-optimization</div>
+                <div class="tag">seo</div>
+              </td>
+              <td class="objective">
+                Vérifier l'optimisation SEO et performance des images (≤ 50%
+                sans attribut alt)
+              </td>
+              <td>
+                • Images présentes sur la page<br />
+                • DOM accessible<br />
+                • Attributs img analysables
+              </td>
+              <td class="steps">
+                1. Charger la page d'accueil<br />
+                2. Localiser toutes les images<br />
+                3. Vérifier attribut alt<br />
+                4. Vérifier attribut src<br />
+                5. Calculer pourcentages<br />
+                6. Valider les seuils SEO
+              </td>
+              <td class="expected-result">
+                • ≤ 50% images sans alt<br />
+                • 0 image sans src<br />
+                • Statistiques détaillées
+              </td>
+              <td style="text-align: center">
+                18/39 images sans alt, 0 sans src
+              </td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="test-title">
+                Test de réactivité de l'interface utilisateur
+              </td>
+              <td>
+                <div class="tag performance">performance</div>
+                <div class="tag">responsiveness</div>
+                <div class="tag">mobile</div>
+              </td>
+              <td class="objective">
+                Mesurer le temps de réponse aux interactions utilisateur (≤ 1
+                seconde)
+              </td>
+              <td>
+                • Éléments cliquables disponibles<br />
+                • Interface interactive<br />
+                • JavaScript fonctionnel
+              </td>
+              <td class="steps">
+                1. Charger la page d'accueil<br />
+                2. Localiser élément cliquable<br />
+                3. Mesurer temps avant clic<br />
+                4. Exécuter clic<br />
+                5. Mesurer temps de réaction<br />
+                6. Valider le seuil (1s)
+              </td>
+              <td class="expected-result">
+                • Temps de réponse ≤ 1000 ms<br />
+                • Interface réactive<br />
+                • Interactions fluides
+              </td>
+              <td style="text-align: center">Réactivité satisfaisante</td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="test-title">
+                Test de l'utilisation mémoire du navigateur
+              </td>
+              <td>
+                <div class="tag performance">performance</div>
+                <div class="tag">memory-usage</div>
+                <div class="tag">stability</div>
+              </td>
+              <td class="objective">
+                Analyser l'utilisation mémoire JavaScript (≤ 50 MB)
+              </td>
+              <td>
+                • Performance Memory API disponible<br />
+                • Chrome/navigateur compatible<br />
+                • JavaScript activé
+              </td>
+              <td class="steps">
+                1. Charger la page d'accueil<br />
+                2. Vérifier API memory disponible<br />
+                3. Récupérer usedJSHeapSize<br />
+                4. Récupérer totalJSHeapSize<br />
+                5. Convertir en MB<br />
+                6. Valider seuil (50 MB)
+              </td>
+              <td class="expected-result">
+                • Mémoire utilisée ≤ 50 MB<br />
+                • Pas de fuites mémoire<br />
+                • Statistiques détaillées
+              </td>
+              <td style="text-align: center">Mémoire JS utilisée: 29.09 MB</td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>🌐 Tests de Compatibilité Navigateurs</h2>
+        <table>
+          <thead>
+            <tr>
+              <th class="col-title">Titre du test</th>
+              <th class="col-tag">Tags</th>
+              <th class="col-objective">Objectif</th>
+              <th class="col-preconditions">Préconditions</th>
+              <th class="col-steps">Étapes</th>
+              <th class="col-expected">Résultat attendu</th>
+              <th class="col-result">Résultat</th>
+              <th class="col-status">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="test-title">
+                Test de compatibilité page d'accueil - Chrome
+              </td>
+              <td>
+                <div class="tag">homepage</div>
+                <div class="tag cross-browser">cross-browser</div>
+                <div class="tag">smoke</div>
+                <div class="tag">chrome</div>
+              </td>
+              <td class="objective">
+                Vérifier le chargement correct de la page d'accueil sur
+                navigateur Google Chrome
+              </td>
+              <td>
+                • WebDriverManager Chrome configuré<br />
+                • Chrome browser installé<br />
+                • Site accessible<br />
+                • Configuration ChromeDriver
+              </td>
+              <td class="steps">
+                1. Setup ChromeDriver<br />
+                2. Maximiser la fenêtre<br />
+                3. Accéder à la page d'accueil<br />
+                4. Vérifier le titre de la page<br />
+                5. Localiser logo par CSS<br />
+                6. Valider visibilité du logo
+              </td>
+              <td class="expected-result">
+                • Titre page non vide<br />
+                • Logo visible et affiché<br />
+                • Rendu correct sur Chrome<br />
+                • Aucune erreur JavaScript
+              </td>
+              <td style="text-align: center">Chargement correct sur Chrome</td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="test-title">
+                Test de compatibilité page d'accueil - Firefox
+              </td>
+              <td>
+                <div class="tag">homepage</div>
+                <div class="tag cross-browser">cross-browser</div>
+                <div class="tag">smoke</div>
+                <div class="tag">firefox</div>
+              </td>
+              <td class="objective">
+                Vérifier le chargement correct de la page d'accueil sur
+                navigateur Mozilla Firefox
+              </td>
+              <td>
+                • WebDriverManager Firefox configuré<br />
+                • Firefox browser installé<br />
+                • Site accessible<br />
+                • Configuration GeckoDriver
+              </td>
+              <td class="steps">
+                1. Setup FirefoxDriver<br />
+                2. Maximiser la fenêtre<br />
+                3. Accéder à la page d'accueil<br />
+                4. Vérifier le titre de la page<br />
+                5. Localiser logo par CSS<br />
+                6. Valider visibilité du logo
+              </td>
+              <td class="expected-result">
+                • Titre page non vide<br />
+                • Logo visible et affiché<br />
+                • Rendu correct sur Firefox<br />
+                • Aucune erreur JavaScript
+              </td>
+              <td style="text-align: center">Chargement correct sur Firefox</td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="test-title">
+                Test de compatibilité page d'accueil - Edge
+              </td>
+              <td>
+                <div class="tag">homepage</div>
+                <div class="tag cross-browser">cross-browser</div>
+                <div class="tag">smoke</div>
+                <div class="tag">edge</div>
+              </td>
+              <td class="objective">
+                Vérifier le chargement correct de la page d'accueil sur
+                navigateur Microsoft Edge
+              </td>
+              <td>
+                • WebDriverManager Edge configuré<br />
+                • Edge browser installé<br />
+                • Site accessible<br />
+                • Configuration EdgeDriver
+              </td>
+              <td class="steps">
+                1. Setup EdgeDriver<br />
+                2. Maximiser la fenêtre<br />
+                3. Accéder à la page d'accueil<br />
+                4. Vérifier le titre de la page<br />
+                5. Localiser logo par CSS<br />
+                6. Valider visibilité du logo
+              </td>
+              <td class="expected-result">
+                • Titre page non vide<br />
+                • Logo visible et affiché<br />
+                • Rendu correct sur Edge<br />
+                • Aucune erreur JavaScript
+              </td>
+              <td style="text-align: center">Chargement correct sur Edge</td>
+              <td style="text-align: center">
+                <span class="status-ok">OK</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="performance-metrics">
+        <h3>🎯 Seuils de Performance Définis</h3>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value">≤ 5s</div>
+            <div class="metric-label">Temps de chargement page</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">≤ 3s</div>
+            <div class="metric-label">DOM Content Loaded</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">≤ 200</div>
+            <div class="metric-label">Nombre de ressources</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">≤ 10</div>
+            <div class="metric-label">Ressources lentes (>2s)</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">≤ 50%</div>
+            <div class="metric-label">Images sans attribut alt</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">≤ 1s</div>
+            <div class="metric-label">Temps de réponse UI</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">≤ 50 MB</div>
+            <div class="metric-label">Utilisation mémoire JS</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary-section">
+        <h3>📊 Résumé Exécutif</h3>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value">10</div>
+            <div class="metric-label">Total des tests</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">4</div>
+            <div class="metric-label">Tests de Navigation</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">6</div>
+            <div class="metric-label">Tests de Performance</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">10</div>
+            <div class="metric-label">Tests en attente</div>
+          </div>
+        </div>
+
+        <p><strong>Couverture fonctionnelle :</strong></p>
+        <ul style="margin-bottom: 0; columns: 2">
+          <li>Navigation et menus déroulants</li>
+          <li>E-commerce (panier d'achat)</li>
+          <li>Gestion d'erreurs HTTP</li>
+          <li>Compatibilité multi-navigateurs</li>
+          <li>Performance de chargement</li>
+          <li>Métriques DOM et timing</li>
+          <li>Optimisation des ressources</li>
+          <li>Réactivité interface utilisateur</li>
+          <li>Optimisation SEO (images)</li>
+          <li>Utilisation mémoire</li>
+        </ul>
+      </div>
+
+      <div class="notes-section">
+        <h3>⚠️ Notes Techniques Importantes</h3>
+        <p><strong>Framework et Outils :</strong></p>
+        <ul>
+          <li>
+            <strong>Selenium WebDriver</strong> : Automatisation des tests
+            navigateur
+          </li>
+          <li>
+            <strong>TestNG</strong> : Framework de tests avec groupement et
+            annotations
+          </li>
+          <li>
+            <strong>WebDriverManager</strong> : Gestion automatique des drivers
+          </li>
+          <li>
+            <strong>Allure Reports</strong> : Reporting avancé avec
+            Epic/Feature/Owner
+          </li>
+          <li>
+            <strong>JavaScript Executor</strong> : Exécution de scripts pour
+            métriques avancées
+          </li>
+        </ul>
+
+        <p><strong>APIs Utilisées :</strong></p>
+        <ul>
+          <li>
+            <strong>Navigation Timing API</strong> : Métriques de performance de
+            navigation
+          </li>
+          <li>
+            <strong>Resource Timing API</strong> : Analyse du chargement des
+            ressources
+          </li>
+          <li>
+            <strong>Performance Memory API</strong> : Surveillance utilisation
+            mémoire
+          </li>
+        </ul>
+
+        <p><strong>Stratégie de Tests :</strong></p>
+        <ul>
+          <li>
+            <strong>Groupement par domaine</strong> : navigation, performance,
+            e-commerce
+          </li>
+          <li>
+            <strong>Attentes explicites</strong> : ExpectedConditions pour la
+            robustesse
+          </li>
+          <li>
+            <strong>Seuils configurables</strong> : Constantes pour limites de
+            performance
+          </li>
+          <li>
+            <strong>Gestion d'exceptions</strong> : Fallback et messages
+            informatifs
+          </li>
+          <li><strong>Tests paramétrés</strong> : Support multi-navigateurs</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>✅ Conclusion</h2>
+        <p>
+          Cette campagne de tests a permis de valider de nombreuses
+          fonctionnalités clés de HaoutaStore.com, notamment l'accès et la
+          gestion des comptes utilisateurs, les interactions avec les
+          formulaires essentiels et la navigation principale. Les métriques de
+          performance mesurées sur la page d'accueil indiquent un comportement
+          satisfaisant en termes de temps de chargement, d'interactivité DOM,
+          d'utilisation mémoire et de gestion des ressources, restant dans les
+          seuils acceptables définis.
+        </p>
+        <p>
+          La compatibilité de base sur les navigateurs Google Chrome, Mozilla
+          Firefox et Microsoft Edge a également été confirmée. Un point
+          d'attention majeur a été identifié lors du test de recherche avec une
+          chaîne très longue, indiquant une potentielle vulnérabilité ou un
+          manque de gestion des entrées extrêmes sur cette fonctionnalité.
+        </p>
+        <p>
+          Dans l'ensemble, le site démontre une bonne stabilité sur les chemins
+          critiques testés. Il est recommandé de corriger le problème identifié
+          dans la fonction de recherche (gestion des entrées longues) et de
+          considérer des tests d'exploration supplémentaires sur les flux moins
+          critiques ou en conditions de charge pour une assurance qualité
+          renforcée.
+        </p>
+      </div>
+
+      <div
+        style="
+          margin-top: 40px;
+          padding: 20px;
+          background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+          border-radius: 8px;
+          text-align: center;
+        "
+      >
+        <p style="margin: 0; color: #6c757d; font-size: 0.9em">
+          <strong>Rapport de tests - HaoutaStore.com</strong><br />
+          Faculté des Sciences et Techniques de Fès<br />
+          2024 - 2025
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
