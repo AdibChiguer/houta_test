@@ -37,26 +37,34 @@ jobs:
       - name: Ensure allure-history directory exists
         run: mkdir -p allure-history
 
-      - name: Load test report history
-        uses: actions/checkout@v3
-        if: always()
+      - name: Upload Allure history
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-history
+          path: allure-history
+
+      - name: Download Allure history
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-history
+          path: allure-history
         continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
 
-      - name: Build test report
-        uses: simple-elf/allure-report-action@v1.7
-        if: always()
+      - name: Generate Allure report
+        uses: simple-elf/allure-report-action@v1.8
         with:
-          gh_pages: gh-pages
+          allure_results: allure-results
+          allure_report: allure-report
           allure_history: allure-history
-          allure_results: build/allure-results
 
-      - name: Publish test report
-        uses: peaceiris/actions-gh-pages@v3
-        if: always()
+      - name: Upload Allure report as artifact
+        uses: actions/upload-artifact@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: allure-history
+          name: allure-report
+          path: allure-report
+
+      - name: Upload Allure history
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-history
+          path: allure-history
