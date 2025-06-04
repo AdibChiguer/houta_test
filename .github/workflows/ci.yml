@@ -31,4 +31,4 @@ jobs:
         run: mvn clean install -B
 
       - name: Run tests
-        run: mvn test
+        run: mvn testfeat(ci): add GitHub Actions pipeline for Maven build and tests
