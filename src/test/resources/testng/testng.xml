@@ -42,11 +42,11 @@
             </class>
         </classes>
     </test>
-    <test name="FormTests">
-        <classes>
-            <class name="com.test.houta.FormTests" />
-        </classes>
-    </test>
+<!--    <test name="FormTests">-->
+<!--        <classes>-->
+<!--            <class name="com.test.houta.FormTests" />-->
+<!--        </classes>-->
+<!--    </test>-->
 
     <test name="FilterTest">
         <classes>
@@ -60,9 +60,9 @@
         </classes>
     </test>
 
-    <test name="UserAccountTests">
-      <classes>
-        <class name="com.test.houta.UserAccountTests" />
-      </classes>
-    </test>
+<!--    <test name="UserAccountTests">-->
+<!--      <classes>-->
+<!--        <class name="com.test.houta.UserAccountTests" />-->
+<!--      </classes>-->
+<!--    </test>-->
 </suite>

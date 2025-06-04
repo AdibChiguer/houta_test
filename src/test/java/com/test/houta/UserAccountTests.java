@@ -2,6 +2,10 @@ package com.test.houta;
 
 import java.time.Duration;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -16,14 +20,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Owner;
 
-
-@Epic("Tests Haouta Store")
-@Feature("Mise à jour du compte utilisateur")
-@Owner("Adib")
+@Epic("Gestion du compte utilisateur")
+@Feature("Mise à jour du profil et changement de mot de passe")
+@Owner("ADIB")
 public class UserAccountTests {
 
     private WebDriver driver;
@@ -56,6 +56,7 @@ public class UserAccountTests {
     }
 
     @Test
+    @Story("L'utilisateur met à jour son profil et modifie son mot de passe")
     public void testProfileUpdate() {
         try {
             driver.get("https://haoutastore.com/my-account/");
